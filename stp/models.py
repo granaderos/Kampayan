@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User as AuthUser
 import datetime
 
 
@@ -13,22 +12,16 @@ class CustomUser(models.Model):
     contact_number = models.CharField(max_length=50, null=True, blank=True, default="")
     password = models.CharField(max_length=50, null=False, blank=False, default="")
 
-    bank_name = models.CharField(max_length=50, null=False, blank=False, default="")
-    account_number = models.CharField(max_length=50, null=False, blank=False, default="")
+    def __str__(self):
+        return self.first_name + " " + self.last_name
 
-class Merchant(models.Model):
-    business_name = models.CharField(max_length=50, null=False, blank=False, default="")
-    address = models.CharField(max_length=50, null=False, blank=False, default="")
-    contact_person = models.CharField(max_length=50, null=False, blank=False, default="")
-    contact_number = models.CharField(max_length=50, null=False, blank=False, default="")
-    email = models.CharField(max_length=50, null=False, blank=False, default="")
-    password = models.CharField(max_length=50, null=False, blank=False, default="")
+class Label(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    location = models.CharField(max_length=244, null=False, blank=False, default="")
+    label = models.IntegerField()
 
-class Transactions(models.Model):
-    date = datetime.datetime.utcnow()
-    user = models.ManyToManyField(CustomUser)
-    merchant = models.ManyToManyField(Merchant)
-    transaction_type = models.CharField(max_length=20, null=False, blank=False, default="save")
-    status = models.IntegerField(default=0)
-    amount = models.FloatField()
-    current_savings = models.FloatField()
+    def __str__(self):
+        return self.location + " - " + str(self.label)
+ 
