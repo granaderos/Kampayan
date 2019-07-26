@@ -2,8 +2,56 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from django.core import serializers
+
 from .models import CustomUser
 from .models import Label
+from .models import Ally
+
+def index(request):
+    return render(request, "stp/index.html")
+
+def login(request):
+    return render(request, "stp/LoginCustomer.html")
+
+def sketch(request):
+    return render(request, "stp/drag.html")
+
+def smart_watch(request):
+    return render(request, "stp/Smartwatch.html")
+
+def set_time(request):
+    return render(request, "stp/SetTime.html")
+
+def home(request):
+    return render(request, "stp/LandingPage.html")
+
+def create_customer(request):
+    return render(request, "stp/RegisterCustomer.html")
+
+def offline(request): 
+    return render(request, "stp/offline.html")
+
+@csrf_exempt
+def execute_login(request):
+    email = request.POST["email"]
+    password = request.POST["password"]
+
+    try:
+        user = CustomUser.objects.get(email=email, password=password)
+        message = "Exists."
+    except CustomUser.DoesNotExist:
+        message = "Does not exist."
+        user = {}
+    # user = serializers.serialize('json', list(user))
+    first_name = ""
+    last_name = ""
+    if(message == "Exists."):
+        first_name = user.first_name
+        last_name = user.last_name
+    
+    return JsonResponse({"message": message, "first_name": first_name, "last_name": last_name})
+
 
 @csrf_exempt
 def addUser(request):
@@ -18,7 +66,17 @@ def addUser(request):
 
     user_id = CustomUser.objects.latest("id")
 
-    return JsonResponse({"message": "successful", "user": user_id})
+    allies = request.POST.getlist("allies")
+    print("ALLIES=================")
+    print(allies)
+
+    for ally in allies:
+        print("ally: --- ")
+        print(ally)
+        a = Ally.object.create(user=user_id, name=ally["name"], contact_number=ally["contact_number"])
+        a.save()
+
+    return JsonResponse({"message": "successful", "user": str(user_id)})
 
 @csrf_exempt
 def addLabel(request):

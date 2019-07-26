@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Welcome to Kampayan</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="icon" href="{% static 'images/LogoTrans.png' %}" sizes="64x64" type="image/png">
+
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+
+		<link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet" />
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/service.js' %}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        padding-left:20px;
+        padding-right:20px;
+        }
+      
+      
+      /* Set a style for all buttons */
+      button {
+        background-color: red;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      button:hover {
+        opacity: 0.8;
+      }
+      
+      
+      
+      .container {
+        width: 100%;
+        padding: 16px;
+        margin-top: 100px;
+      
+      }
+      
+      span.psw {
+        float: right;
+        padding-top: 16px;
+      }
+      
+      
+      /* Add Zoom Animation */
+      .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+      }
+      
+      @-webkit-keyframes animatezoom {
+        from {-webkit-transform: scale(0)} 
+        to {-webkit-transform: scale(1)}
+      }
+        
+      @keyframes animatezoom {
+        from {transform: scale(0)} 
+        to {transform: scale(1)}
+      }
+      
+      /* Change styles for span and cancel button on extra small screens */
+      @media screen and (max-width: 300px) {
+        span.psw {
+           display: block;
+           float: none;
+        }
+        .cancelbtn {
+           width: 100%;
+        }
+      }
+      .form-control {
+      
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-radius: 30px;
+        padding: 15px;
+      }
+      .btnred {
+       background-color: red;
+       border-radius: 30px;
+       padding: 15px;
+      }	
+      
+      .btn {
+        padding: 15px;
+        border-radius: 30px;
+        width: 100%;
+      }
+      .jumbotron{
+        
+      }
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      
+      }
+      </style>
+      </head>
+      <body>
+      <div class="container">
+       
+      
+      
+      
+        <img src="{% static 'images/logored.png' %} " class="center" width="150" height="150">
+      
+      </img>
+      
+      
+        
+          <div class="container1">
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+            <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        
+      <div class="container1">
+       <button type="submit" id="btnLogIn" class="btn btnred btn-primary">Login</button>
+       <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+       
+       
+      
+      </div>
+      
+      </div>
+      </body>
+</html>

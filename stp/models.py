@@ -10,10 +10,19 @@ class CustomUser(models.Model):
     last_name = models.CharField(max_length=50, null=False, blank=False, default="")
     email = models.CharField(max_length=50, null=False, blank=False, default="")
     contact_number = models.CharField(max_length=50, null=True, blank=True, default="")
+    registered_as_ally = models.IntegerField(default=0)
     password = models.CharField(max_length=50, null=False, blank=False, default="")
 
     def __str__(self):
         return self.first_name + " " + self.last_name
+
+class Ally(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, null=False, blank=False, default="")
+    contact_number = models.CharField(max_length=20, null=False, blank=False, default="")
+
+    def __str__(self):
+        return self.name
 
 class Label(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+  <title>Welcome to Kampayan</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="{% static 'images/LogoTrans.png' %}" sizes="64x64" type="image/png">
+
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+
+  <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet" />
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/service.js' %}"></script>
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+
+  <link rel="icon" href="{% static 'images/logored.png' %}" sizes="64x64" type="image/png">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f70303;
+    }
+
+
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+
+    .btnwhite {
+ background-color: white;
+ border-radius:100px;
+ width: 100%;
+
+}	
+
+.btnwhite:hover {
+  color:black;
+
+}
+.btn {
+	padding:10px;
+  border-radius: 100px;
+  color:red;
+}
+
+
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+        display: block;
+        float: none;
+      }
+
+      .cancelbtn {
+        width: 100%;
+      }
+    }
+    .cwhite{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color:white;
+    }
+    .logocontainer{
+      margin: auto;
+      padding: 30px;
+    }
+    .center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+.container{
+ 
+  text-align: center;
+}
+  </style>
+</head>
+
+<body>
+
+
+  <div class="logocontainer">
+  <img class="center" src="{% static 'images/logowhite.png' %}" width="150" height="150">
+  </div>
+
+  <div class="container" >
+    <a type="submit" href="{% url 'create_customer' %}" id="btnLogIn" class="btn btnwhite ">Create Account</a>
+    <h6 class="cwhite" text-align="center"; >or</h6>
+    <a type="submit" class="btn btnwhite " href="{% url 'login' %}">Login</a>
+
+  </div>
+
+
+
+</html>
